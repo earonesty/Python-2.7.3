@@ -6,7 +6,8 @@ a list of the individual items in the feed.
 import sys
 import codecs
 
-from xml.sax import make_parser, handler
+from xml.sax import handler
+import defusedxml.sax
 
 # --- Templates
 
@@ -92,6 +93,6 @@ class RSSHandler(handler.ContentHandler):
 # --- Main program
 
 if __name__ == '__main__':
-    parser = make_parser()
+    parser = defusedxml.sax.make_parser()
     parser.setContentHandler(RSSHandler())
     parser.parse(sys.argv[1])

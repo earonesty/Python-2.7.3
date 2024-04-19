@@ -5,7 +5,8 @@ but not necessarily identical, document.
 
 import sys
 
-from xml.sax import saxutils, handler, make_parser
+from xml.sax import saxutils, handler
+import defusedxml.sax
 
 # --- The ContentHandler
 
@@ -41,6 +42,6 @@ class ContentGenerator(handler.ContentHandler):
 # --- The main program
 
 if __name__ == '__main__':
-    parser = make_parser()
+    parser = defusedxml.sax.make_parser()
     parser.setContentHandler(ContentGenerator())
     parser.parse(sys.argv[1])
