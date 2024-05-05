@@ -8,12 +8,12 @@ def main():
     pathname = EasyDialogs.AskFileForOpen(message='File to check end-of-lines in:')
     if not pathname:
         sys.exit(0)
-    fp = open(pathname, 'rb')
-    try:
-        data = fp.read()
-    except MemoryError:
-        EasyDialogs.Message('Sorry, file is too big.')
-        sys.exit(0)
+    with open(pathname, 'rb') as fp:
+        try:
+            data = fp.read()
+        except MemoryError:
+            EasyDialogs.Message('Sorry, file is too big.')
+            sys.exit(0)
     if len(data) == 0:
         EasyDialogs.Message('File is empty.')
         sys.exit(0)

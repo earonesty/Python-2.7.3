@@ -19,9 +19,9 @@ def main():
     for filename in args:
         treat_file(filename)
     if tags:
-        fp = open('tags', 'w')
-        tags.sort()
-        for s in tags: fp.write(s)
+        with open('tags', 'w') as fp:
+            tags.sort()
+            for s in tags: fp.write(s)
 
 
 expr = '^[ \t]*(def|class)[ \t]+([a-zA-Z0-9_]+)[ \t]*[:\(]'
