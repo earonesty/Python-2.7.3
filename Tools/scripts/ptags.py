@@ -39,7 +39,7 @@ def treat_file(filename):
     s = base + '\t' + filename + '\t' + '1\n'
     tags.append(s)
     while 1:
-        line = fp.readline()
+        line = fp.readline(5_000_000)
         if not line:
             break
         m = matcher.match(line)
