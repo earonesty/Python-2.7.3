@@ -5,6 +5,7 @@ from test import test_support
 import time
 import os
 import subprocess
+from security import safe_command
 
 winsound = test_support.import_module('winsound')
 ctypes = test_support.import_module('ctypes')
@@ -242,7 +243,7 @@ def _have_soundcard():
 
         check_script = os.path.join(os.path.dirname(__file__),
                                     "check_soundcard.vbs")
-        p = subprocess.Popen([cscript_path, check_script],
+        p = safe_command.run(subprocess.Popen, [cscript_path, check_script],
                              stdout=subprocess.PIPE)
         __have_soundcard_cache = not p.wait()
     return __have_soundcard_cache
