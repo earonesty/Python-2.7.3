@@ -60,7 +60,7 @@ def openrcsclient(opts = []):
         x = RCSProxyClient(address, verbose)
     if not directory:
         try:
-            directory = open(os.path.join("CVS", "Repository")).readline()
+            directory = open(os.path.join("CVS", "Repository")).readline(5_000_000)
         except IOError:
             pass
         else:

@@ -33,7 +33,7 @@ def treat_file(filename, outfp):
     tags = []
     size = 0
     while 1:
-        line = fp.readline()
+        line = fp.readline(5_000_000)
         if not line:
             break
         lineno = lineno + 1
